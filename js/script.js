@@ -1610,8 +1610,7 @@ function startIntro() {
 			showIntroText(countdown, true);
 			// CUSTOM1
 			setTimeout(() => {
-				// Sau khi số 1 kết thúc animation, hiển thị "HAPPY NEW YEAR"
-				showIntroText('Happy 1st Anniversary, my love.', false);
+				showIntroText('Happy 1st\nAnniversary\nAnita my love\n💗', false);
 				
 				// Sau khi "HAPPY NEW YEAR" hiển thị 1 giây (0.8s animation + 0.2s), bắt đầu pháo hoa ngay
 				setTimeout(() => {

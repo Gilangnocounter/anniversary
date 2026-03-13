@@ -252,9 +252,36 @@
 			}
 
 			.intro-overlay .intro-text {
-				text-align: center;
-				max-width: 90%;
-				word-wrap: break-word;
+			    /* 1. Reset ukuran kotak agar pas dengan layar */
+			    width: 100%;
+			    max-width: 100vw;
+			    box-sizing: border-box; /* PENTING: Biar padding gak bikin kotak melebar ke kanan */
+			    padding: 0 0.5rem; /* Kasih jarak aman 1rem di kiri dan kanan */
+
+			    /* 2. Ukuran font dinamis (Magic-nya di sini) */
+			    /* Artinya: Minimal ukuran 1.5rem, idealnya 10% dari lebar layar, maksimal 5rem */
+			    font-size: clamp(2rem, 10vw, 5rem); 
+
+			    /* 3. Posisi dan Teks */
+			    text-align: center;
+			    white-space: pre-line; /* Tetap pertahankan ini untuk membaca \n dari JS */
+			    word-wrap: normal;
+			    word-break: keep-all;
+
+			    /* Biarkan efek text-shadow kamu yang lama di bawah sini */
+			    font-family: 'Fredoka One', cursive !important;
+			    font-weight: 400;
+			    color: #ff9ad9;
+			    text-shadow:
+			        4px 4px 0 rgba(255, 107, 157, 0.8),
+			        8px 8px 0 rgba(196, 69, 105, 0.6),
+			        12px 12px 15px rgba(0, 0, 0, 0.5),
+			        0 0 15px rgba(255, 105, 180, 1),
+			        0 0 40px rgba(255, 20, 147, 0.9),
+			        0 0 70px rgba(255, 20, 147, 0.8),
+			        0 0 100px rgba(255, 20, 147, 0.6),
+			        0 0 150px rgba(255, 20, 147, 0.4),
+			        0 0 200px rgba(255, 20, 147, 0.3);
 			}
 
 			.intro-overlay.hide {
