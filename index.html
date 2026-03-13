@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Happy Anniversary</title>
+		<title>Still With You 💗</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -528,6 +528,57 @@
   		    filter: drop-shadow(0 4px 16px #fff3);
   		    transition: filter 0.4s, opacity 0.4s;
   		}
+
+		/* Styling Tombol Stop Wishes (Teks Transparan & Posisi Bawah Tengah) */
+		.stop-wishes-text-btn {
+		    position: fixed;
+		    bottom: 12%; /* Jarak dari bawah, agak ke atas sedikit */
+		    left: 50%;
+		    transform: translateX(-50%); /* Agar persis di tengah secara horizontal */
+		    font-family: 'Fredoka One', cursive !important;
+		    font-size: 1.2rem;
+		    padding: 0.8rem 2rem;
+		    border-radius: 999px;
+		
+		    /* Warna teks dan background transparan */
+		    color: rgba(255, 154, 217, 0.8); 
+		    background: rgba(0, 0, 0, 0.4); 
+		    border: 1px solid rgba(255, 192, 203, 0.4);
+		    box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+		
+		    /* Efek blur ala glassmorphism biar estetik */
+		    backdrop-filter: blur(4px);
+		    -webkit-backdrop-filter: blur(4px);
+		
+		    cursor: pointer;
+		    z-index: 100; /* Pastikan tombol selalu bisa di-klik di atas kanvas */
+		    transition: all 0.3s ease;
+		    text-transform: uppercase;
+		    letter-spacing: 2px;
+		}
+
+		/* Efek saat kursor menyentuh tombol (Hover) */
+		.stop-wishes-text-btn:hover {
+		    background: rgba(0, 0, 0, 0.6);
+		    color: #ff9ad9;
+		    border-color: rgba(255, 192, 203, 0.8);
+		    box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+		    transform: translateX(-50%) scale(1.05); /* Membesar sedikit, tapi tetap di tengah */
+		}
+
+		/* Efek saat tombol diklik (Active) */
+		.stop-wishes-text-btn:active {
+		    transform: translateX(-50%) scale(0.95);
+		}
+
+		/* Penyesuaian ukuran untuk layar HP */
+		@media (max-width: 768px) {
+		    .stop-wishes-text-btn {
+		        font-size: 1rem;
+		        padding: 0.6rem 1.5rem;
+		        bottom: 10%; 
+		    }
+		}
 		</style>
 
 		<meta name="msapplication-TileImage" content="./ok.png" />
@@ -604,17 +655,20 @@
 							<use href="#icon-sound-off" xlink:href="#icon-sound-off"></use>
 						</svg>
 					</div>
-					<div class="btn stop-wishes-btn">
+					<!-- <div class="btn stop-wishes-btn">
 						<svg fill="white" width="24" height="24">
 							<use href="#icon-stop-wishes" xlink:href="#icon-stop-wishes"></use>
 						</svg>
-					</div>
+					</div> -->
 					<div class="btn settings-btn">
 						<svg fill="white" width="24" height="24">
 							<use href="#icon-settings" xlink:href="#icon-settings"></use>
 						</svg>
 					</div>
 				</div>
+
+				<button class="stop-wishes-btn stop-wishes-text-btn">CLOSE</button>
+
 				<div class="menu hide">
 					<div class="menu__inner-wrap">
 						<div class="btn btn--bright close-menu-btn">
@@ -691,6 +745,21 @@
 			</div>
 		</div>
 		<script>
+			// --- Logika untuk menyembunyikan tombol HIDE WISHES setelah diklik ---
+            const stopWishesBtn = document.querySelector('.stop-wishes-text-btn');
+            
+            if (stopWishesBtn) {
+                stopWishesBtn.addEventListener('click', function() {
+                    // Kode ini membuat tombol menghilang secara perlahan
+                    this.style.opacity = '0';
+                    this.style.pointerEvents = 'none';
+                    
+                    // (Opsional) Hapus sepenuhnya dari dokumen setelah animasinya selesai
+                    setTimeout(() => {
+                        this.style.display = 'none';
+                    }, 300);
+                });
+            }
             // --- Cek Orientasi Layar (Disesuaikan untuk project ini) ---
             let isLandscape = true;
             function checkOrientation() {
